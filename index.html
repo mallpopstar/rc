@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Remote Control Library</title>
+
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        background-color: #fff;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .h-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .v-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .padding {
+        padding: 1rem;
+      }
+
+      input {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        background-color: #fff;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-weight: 500;
+      }
+
+      input[type="submit"] {
+        cursor: pointer;
+        user-select: none;
+        background-color: #09750e;
+        color: white;
+        border: none;
+        font-weight: bold;
+      }
+
+      .border {
+        border: 1px solid #ccc;
+      }
+
+      .note {
+        font-size: 1.25rem;
+        color: red;
+      }
+    </style>
+
+    <script>
+      function increment() {
+        const el = document.querySelector("[name=counter]");
+        el.textContent = Number(el.textContent) + 1;
+        // el.value = Number(el.value) + 1 + ''
+      }
+    </script>
+  </head>
+  <body class="padding v-center">
+    <div id="app"></div>
+    <script
+      type="module"
+      src="/src/main.ts"></script>
+
+    <div class="h-center">
+      <img
+        src="https://www.tigerstrypes.com/wp-content/uploads/2016/07/Remote-Control-NES-Pic-1.jpg"
+        alt="Remote Control Logo" />
+    </div>
+    <div class="note">Open the developer console</div>
+    <div>This code can be found in <a href="src/main.ts">main.ts</a></div>
+    <form class="padding h-center">
+      <input
+        type="text"
+        id="first"
+        name="first"
+        placeholder="First name" />
+      <input
+        type="text"
+        id="last"
+        name="last"
+        placeholder="Last name" />
+      <input
+        type="submit"
+        value="Submit" />
+    </form>
+    <div class="padding h-center">
+      <a href="#1">Link 1</a>
+      <a href="#2">Link 2</a>
+    </div>
+    <div class="padding h-center border">
+      <button onclick="increment()">Increment</button>
+      <div name="counter">0</div>
+      <input
+        type="text"
+        name="text" placeholder="Type anything" />
+    </div>
+  </body>
+</html>

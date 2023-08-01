@@ -1,0 +1,36 @@
+{
+  "name": "@mallpopstar/rc",
+  "version": "0.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mallpopstar/rc"
+  },
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "./dist/remote.umd.cjs",
+  "module": "./dist/remote.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./dist/remote.js",
+      "require": "./dist/remote.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.7",
+    "vite-plugin-dts": "^3.4.0"
+  },
+  "dependencies": {
+    "@mallpopstar/partyline": "1.0.1"
+  }
+}
