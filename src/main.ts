@@ -47,16 +47,16 @@ async function main() {
     res.send('echo back --> ' + req.body)
   })
 
-  testLocal()
-  testFetch()
-  testStorage()
-  testDocument()
-  testPage()
-  testDocumentChange()
-  testWorker()
+  runLocal()
+  runFetch()
+  runStorage()
+  runDocument()
+  runPage()
+  runDocumentChange()
+  runWorker()
 }
 
-function testDocumentChange() {
+function runDocumentChange() {
   createDocumentReceiver(receiver).start()
 
   const documentSender = createDocumentSender(sender)
@@ -71,7 +71,7 @@ function testDocumentChange() {
   })
 }
 
-function testWorker() {
+function runWorker() {
   const worker = loadWorker('http://localhost:8888/worker.js')
   workerReceiver.connect(worker)
   workerReceiver.onRequest('echo', (req, res) => {
@@ -79,12 +79,12 @@ function testWorker() {
   })
 }
 
-function testLocal() {
+function runLocal() {
   // custom request
   sender.postRequest('echo', 'Rob').then(console.log)
 }
 
-function testStorage() {
+function runStorage() {
   createCookieStoreReceiver(receiver).start()
   createCookieReceiver(receiver).start()
   createLocalStorageReceiver(receiver).start()
@@ -111,7 +111,7 @@ function testStorage() {
   sessionStorageSender.getItem('foo').then(console.log)
 }
 
-function testFetch() {
+function runFetch() {
   createFetchReceiver(receiver).start()
 
   const fetchSender = createFetchSender(sender)
@@ -135,7 +135,7 @@ function testFetch() {
   })
 }
 
-function testDocument() {
+function runDocument() {
   createDocumentReceiver(receiver).start()
 
   const documentSender = createDocumentSender(sender)
@@ -148,10 +148,10 @@ function testDocument() {
     console.log('querySelector', r)
   })
   // documentSender.remove('[name=button]')
-  documentSender.addStyles('[name=button]', { color: 'red' })
-  documentSender.restoreStyles('[name=button]')
+  documentSender.addStyles('[name=button]', { color: '#FF00FF', fontWeight: 'bold', borderColor: '#FF00FF' })
+  // documentSender.restoreStyles('[name=button]')
   documentSender.addClasses('[name=button]', 'btn')
-  documentSender.addClasses('[name=button]', 'btn')
+  documentSender.addClasses('[name=button]', 'btn') // will not add it a second time
   // documentSender.removeClasses('[name=button]', 'good ugly')
   // documentSender.toggleClasses('[name=button]', 'btn good bad')
   // documentSender.toggleClasses('[name=button]', 'btn bad')
@@ -204,7 +204,7 @@ function testDocument() {
   // }, 2000)
 }
 
-function testPage() {
+function runPage() {
   createPageReceiver(receiver).start()
 
   const pageSender = createPageSender(sender)

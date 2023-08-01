@@ -6,8 +6,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: './src/index.ts',
-      name: 'remote',
-      fileName: (format) => `remote.${format}.js`.replace('.iife', '.min'),
+      name: 'remotecontrol',
+      fileName: (format) => `rc.${format}.js`.replace('.iife', '.min'),
       formats: ['es', 'iife', 'umd'],
     },
     minify: true,
