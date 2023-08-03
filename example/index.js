@@ -1,25 +1,25 @@
-import { createReceiver, createSender, loadWorker } from '@mallpopstar/partyline'
+const { createReceiver, createSender, loadWorker } = partyline
 
-import { createCookieReceiver } from './storage/cookie/receiver'
-import { createCookieSender } from './storage/cookie/sender'
-import { createCookieStoreReceiver } from './storage/cookie-store/receiver'
-import { createCookieStoreSender } from './storage/cookie-store/sender'
-import { createDocumentReceiver } from './document/receiver'
-import { createDocumentSender } from './document/sender'
-import { createFetchReceiver } from './network/fetch/receiver'
-import { createFetchSender } from './network/fetch/sender'
-import { createLocalStorageReceiver } from './storage/local-storage/receiver'
-import { createLocalStorageSender } from './storage/local-storage/sender'
-import { createPageReceiver } from './page/receiver'
-import { createPageSender } from './page/sender'
-import { createSessionStorageReceiver } from './storage/session-storage/receiver'
-import { createSessionStorageSender } from './storage/session-storage/sender'
+const { createCookieReceiver } = remotecontrol
+const { createCookieSender } = remotecontrol
+const { createCookieStoreReceiver } = remotecontrol
+const { createCookieStoreSender } = remotecontrol
+const { createDocumentReceiver } = remotecontrol
+const { createDocumentSender } = remotecontrol
+const { createFetchReceiver } = remotecontrol
+const { createFetchSender } = remotecontrol
+const { createLocalStorageReceiver } = remotecontrol
+const { createLocalStorageSender } = remotecontrol
+const { createPageReceiver } = remotecontrol
+const { createPageSender } = remotecontrol
+const { createSessionStorageReceiver } = remotecontrol
+const { createSessionStorageSender } = remotecontrol
 
 const receiver = createReceiver()
 const workerReceiver = createReceiver()
 const sender = createSender()
 
-function htmlToDOM(htmlString: string) {
+function htmlToDOM(htmlString) {
   const parser = new DOMParser()
   const doc = parser.parseFromString(htmlString, 'text/html')
   return doc.body.firstChild
@@ -64,7 +64,7 @@ function runDocumentChange() {
     console.log('input mutated:', val)
   })
 
-  documentSender.subscribe('[name="counter"]', 'mutate', (response: any) => {
+  documentSender.subscribe('[name="counter"]', 'mutate', (response) => {
     const el = htmlToDOM(response.body)
     console.log('counter mutated:', el?.textContent)
     // console.log(val.body)

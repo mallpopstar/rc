@@ -56,7 +56,7 @@ You will also need to include the Partyline library. You can use the same CDN fo
 **Using jsDelivr**
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@rc/partyline@latest/dist/rc.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mallpopstar/rc@latest/dist/rc.min.js"></script>
 ```
 
 The libraries will be available on global variables named `partyline` and `remotecontrol`.
