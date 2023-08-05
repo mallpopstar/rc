@@ -1,4 +1,4 @@
-import { createReceiver, createSender, loadWorker } from '@mallpopstar/partyline'
+import { createReceiver, createSender } from '@mallpopstar/partyline'
 
 import { createCookieReceiver } from './storage/cookie/receiver'
 import { createCookieSender } from './storage/cookie/sender'
@@ -16,7 +16,7 @@ import { createSessionStorageReceiver } from './storage/session-storage/receiver
 import { createSessionStorageSender } from './storage/session-storage/sender'
 
 const receiver = createReceiver()
-const workerReceiver = createReceiver()
+// const workerReceiver = createReceiver()
 const sender = createSender()
 
 function htmlToDOM(htmlString: string) {
@@ -71,17 +71,17 @@ function runDocumentChange() {
   })
 }
 
-function runWorker() {
-  const worker = loadWorker('http://localhost:8888/worker.js')
-  workerReceiver.connect(worker)
-  workerReceiver.onRequest('echo', (req, res) => {
-    res.send('echo back --> ' + req.body)
-  })
-}
+// function runWorker() {
+//   const worker = loadWorker('http://localhost:8888/worker.js')
+//   workerReceiver.connect(worker)
+//   workerReceiver.onRequest('echo', (req, res) => {
+//     res.send('echo back --> ' + req.body)
+//   })
+// }
 
 function runLocal() {
   // custom request
-  sender.postRequest('echo', 'Rob').then(console.log)
+  sender.postRequest('echo', 'Hello, world!').then(console.log)
 }
 
 function runStorage() {

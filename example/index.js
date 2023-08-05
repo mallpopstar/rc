@@ -26,15 +26,15 @@ function htmlToDOM(htmlString) {
 }
 
 function connect() {
-  receiver.connect(window)
-  sender.connect(window)
+  // receiver.connect(window)
+  // sender.connect(window)
 
   // const broadcastChannel = new BroadcastChannel('rc')
-  // const messageChannel = new MessageChannel()
-  // receiver.connect(messageChannel.port1)
+  const messageChannel = new MessageChannel()
+  receiver.connect(messageChannel.port1)
   // receiver.connect(broadcastChannel)
 
-  // sender.connect(messageChannel.port2)
+  sender.connect(messageChannel.port2)
   // sender.connect(broadcastChannel)
 }
 
@@ -61,13 +61,12 @@ function runDocumentChange() {
 
   const documentSender = createDocumentSender(sender)
   documentSender.subscribe('[name="counter-input"]', 'mutate', val => {
-    console.log('input mutated:', val)
+    console.log('input mutated:', JSON.stringify(val, null, 2))
   })
 
-  documentSender.subscribe('[name="counter"]', 'mutate', (response) => {
+  documentSender.subscribe('[name="counter"]', 'mutate', response => {
     const el = htmlToDOM(response.body)
     console.log('counter mutated:', el?.textContent)
-    // console.log(val.body)
   })
 }
 
@@ -81,7 +80,7 @@ function runWorker() {
 
 function runLocal() {
   // custom request
-  sender.postRequest('echo', 'Rob').then(console.log)
+  sender.postRequest('echo', 'Hello, world!').then(r => console.log('echo', JSON.stringify(r, null, 2)))
 }
 
 function runStorage() {
@@ -91,43 +90,43 @@ function runStorage() {
   createSessionStorageReceiver(receiver).start()
 
   const cookieStoreSender = createCookieStoreSender(sender)
-  cookieStoreSender.subscribe('foo', val => console.log('foo changed:', val))
-  cookieStoreSender.setItem('foo', 'bar1')
-  cookieStoreSender.getItem('foo').then(console.log)
+  cookieStoreSender.subscribe('foo', r => console.log('foo changed:', JSON.stringify(r, null, 2)))
+  cookieStoreSender.setItem('foo', 'bar')
+  cookieStoreSender.getItem('foo').then(r => console.log('getItem', JSON.stringify(r, null, 2)))
 
   const localStorageSender = createLocalStorageSender(sender)
-  localStorageSender.subscribe('foo', val => console.log('foo changed:', val))
+  localStorageSender.subscribe('foo', r => console.log('foo changed:', JSON.stringify(r, null, 2)))
   localStorageSender.setItem('foo', 'bar')
-  localStorageSender.getItem('foo').then(console.log)
+  localStorageSender.getItem('foo').then(r => console.log('getItem', JSON.stringify(r, null, 2)))
 
   const cookieSender = createCookieSender(sender)
-  cookieSender.subscribe('foo', val => console.log('foo changed:', val))
+  cookieSender.subscribe('foo', val => console.log('foo changed:', JSON.stringify(val, null, 2)))
   cookieSender.setItem('foo', 'bar')
-  cookieSender.getItem('foo').then(console.log)
+  cookieSender.getItem('foo').then(r => console.log('getItem', JSON.stringify(r, null, 2)))
 
   const sessionStorageSender = createSessionStorageSender(sender)
   sessionStorageSender.subscribe('foo', val => console.log('foo changed:', val))
-  sessionStorageSender.setItem('foo', 'bar1')
-  sessionStorageSender.getItem('foo').then(console.log)
+  sessionStorageSender.setItem('foo', 'bar')
+  sessionStorageSender.getItem('foo').then(r => console.log('getItem', JSON.stringify(r, null, 2)))
 }
 
 function runFetch() {
   createFetchReceiver(receiver).start()
 
   const fetchSender = createFetchSender(sender)
-  fetchSender.subscribe(val => console.log('fetched:', val))
+  fetchSender.subscribe(r => console.log('fetched:', JSON.stringify(r, null, 2)))
 
   fetchSender.get('https://jsonplaceholder.typicode.com/todos/1', {}, { type: 'json' }).then(r => {
     // console.log('get', r.status, JSON.parse(r.body))
-    console.log('get', r.status, r.body)
+    console.log('get', JSON.stringify(r, null, 2))
   })
   fetchSender.post('https://jsonplaceholder.typicode.com/todos', {}, { type: 'json' }).then(r => {
     // console.log('post', r.status, JSON.parse(r.body))
-    console.log('post', r.status, r.body)
+    console.log('post', JSON.stringify(r, null, 2))
   })
   fetchSender.put('https://jsonplaceholder.typicode.com/todos/1', {}, { type: 'json' }).then(r => {
     // console.log('put', r.status, JSON.parse(r.body))
-    console.log('put', r.status, r.body)
+    console.log('put', JSON.stringify(r, null, 2))
   })
   fetchSender.delete('https://jsonplaceholder.typicode.com/todos/1', {}, { type: 'json' }).then(r => {
     // console.log('delete', JSON.parse(r.status))
@@ -145,7 +144,7 @@ function runDocument() {
     '<div name="button" class="good bad ugly" style="color:blue">This button was injected remotely</div>'
   )
   documentSender.querySelector('[name=button]').then(r => {
-    console.log('querySelector', r)
+    console.log('querySelector', JSON.stringify(r, null, 2))
   })
   // documentSender.remove('[name=button]')
   documentSender.addStyles('[name=button]', { color: '#FF00FF', fontWeight: 'bold', borderColor: '#FF00FF' })
@@ -157,13 +156,13 @@ function runDocument() {
   // documentSender.toggleClasses('[name=button]', 'btn bad')
   // documentSender.restoreClasses('[name=button]')
   documentSender.exists('[name=button]').then(r => {
-    console.log('exists', r)
+    console.log('exists', JSON.stringify(r, null, 2))
   })
   const unsubscribe = documentSender.subscribe(
     '[name=button]',
     'click',
     val => {
-      console.log('button clicked:', val)
+      console.log('button clicked:', JSON.stringify(val, null, 2))
       console.log('unsubscribing from click event and removing button')
       documentSender.remove('[name=button]')
       unsubscribe()
@@ -172,7 +171,7 @@ function runDocument() {
   )
 
   documentSender.subscribe('[name="text"]', 'input', val => {
-    console.log('input changed:', val)
+    console.log('input changed:', JSON.stringify(val, null, 2))
     // unsubscribe()
   })
 
@@ -186,7 +185,7 @@ function runDocument() {
     'form',
     'submit',
     val => {
-      console.log('form submitted:', val)
+      console.log('form submitted:', JSON.stringify(val, null, 2))
     },
     { preventDefault: true }
   )
@@ -208,13 +207,13 @@ function runPage() {
   createPageReceiver(receiver).start()
 
   const pageSender = createPageSender(sender)
-  pageSender.getTitle().then(console.log)
-  pageSender.getUrl().then(console.log)
-  pageSender.subscribe('title', val => {
-    console.log('title changed:', val)
+  pageSender.getTitle().then(r => console.log('title:', JSON.stringify(r, null, 2)))
+  pageSender.getUrl().then(r => console.log('url:', JSON.stringify(r, null, 2)))
+  pageSender.subscribe('title', r => {
+    console.log('title changed:', JSON.stringify(r, null, 2))
   })
-  pageSender.subscribe('url', val => {
-    console.log('url changed:', val)
+  pageSender.subscribe('url', r => {
+    console.log('url changed:', JSON.stringify(r, null, 2))
   })
 }
 
