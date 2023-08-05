@@ -73,6 +73,12 @@
         color: white;
         text-align: center;
       }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+        text-align: center;
+      }
     </style>
 
     <script>
@@ -123,6 +129,12 @@
       <input
         type="text"
         name="text" placeholder="Type anything" />
+    </div>
+
+    <div class="grid ">
+      <a href="?connect=window">Connect using window</a>
+      <a href="?connect=message">Connect using MessageChannel</a>
+      <a href="?connect=broadcast">Connect using BroadcastChannel</a>
     </div>
   </body>
 </html>

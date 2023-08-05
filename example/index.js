@@ -26,16 +26,26 @@ function htmlToDOM(htmlString) {
 }
 
 function connect() {
-  // receiver.connect(window)
-  // sender.connect(window)
-
-  // const broadcastChannel = new BroadcastChannel('rc')
-  const messageChannel = new MessageChannel()
-  receiver.connect(messageChannel.port1)
-  // receiver.connect(broadcastChannel)
-
-  sender.connect(messageChannel.port2)
-  // sender.connect(broadcastChannel)
+  const params = new URLSearchParams(window.location.search)
+  const connType = params.get('connect')
+  switch (connType) {
+    case 'message':
+      console.log('using MessageChannel')
+      const messageChannel = new MessageChannel()
+      receiver.connect(messageChannel.port1)
+      sender.connect(messageChannel.port2)
+      break
+    case 'broadcast':
+      console.log('using BroadcastChannel - open another window to connect')
+      const broadcastChannel = new BroadcastChannel('rc')
+      receiver.connect(broadcastChannel)
+      sender.connect(broadcastChannel)
+      break
+    default:
+      console.log('using window')
+      receiver.connect(window)
+      sender.connect(window)
+  }
 }
 
 async function main() {
