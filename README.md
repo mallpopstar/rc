@@ -10,7 +10,7 @@ Many things that you can do using JavaScript on a website can be done remotely w
 - Automate testing of your website
 - Automate repetitive tasks
 - Intercept and modify network requests
-- Web scraping
+- Read and write to the DOM
 - Event listening on DOM elements
 - Take screenshots of websites (planned)
 - Capture errors and exceptions (planned)
@@ -131,25 +131,47 @@ npm run dev
 - Example using WebSocket
 - Example using WebRTC
 - Example using Custom Channel
-- Unit tests around each module
 
 ## Alternatives to Remote Control
 
-If you are looking for something more robust, here are some alternatives to Remote Control:
+Remote Control may meet the needs of what you are trying to accomplish. However, there are many other tools that may be better suited for your use case. Here are some alternatives to Remote Control:
 
-### Playwright
+### DOM Frameworks and Libraries
 
-[Playwright](https://playwright.dev/). Playwright is a Node library to automate Chromium, Firefox and WebKit with a single API. Playwright is built to enable cross-browser web automation that is ever-green, capable, reliable and fast.
+#### HTMLX
 
-### Cypress
+[HTMLX](https://github.com/bigskysoftware/htmx) allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern user interfaces with the simplicity and power of hypertext.
 
-[Cypress](https://www.cypress.io/). Cypress is a JavaScript End to End Testing Framework. It is a complete end-to-end testing experience that includes unit testing, mocking, spying, stubbing, and server mocking.
+#### Hyperscript
 
-### Puppeteer
+[Hyperscript](https://hyperscript.org/) enhances HTML with concise DOM, event and async features. Make writing interactive HTML a joy. It is possible that Remote Control could be used in conjunction with Hyperscript to create a powerful framework for building interactive websites.
 
-[Puppeteer](https://pptr.dev/). Puppeteer is a Node library that provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium.
 
-### Selenium
+### Worker Libraries
+
+#### Partytown
+
+[Partytown](https://partytown.builder.io/) is a lazy-loaded library to help relocate resource intensive scripts into a web worker, and off of the main thread. Its goal is to help speed up sites by dedicating the main thread to your code, and offloading third-party scripts to a web worker.
+
+
+
+### Testing Frameworks
+
+If you are looking for something more robust testing suite, here are some alternatives to Remote Control:
+
+#### Playwright
+
+[Playwright](https://playwright.dev/) is a Node library to automate Chromium, Firefox and WebKit with a single API. Playwright is built to enable cross-browser web automation that is ever-green, capable, reliable and fast.
+
+#### Cypress
+
+[Cypress](https://www.cypress.io/) is a JavaScript End to End Testing Framework. It is a complete end-to-end testing experience that includes unit testing, mocking, spying, stubbing, and server mocking.
+
+#### Puppeteer
+
+[Puppeteer](https://pptr.dev/) is a Node library that provides a high-level API to control Chrome or Chromium over the DevTools Protocol. Puppeteer runs headless by default, but can be configured to run full (non-headless) Chrome or Chromium.
+
+#### Selenium
 
 [Selenium](https://www.selenium.dev/). Selenium is a suite of tools for automating web browsers.
 
