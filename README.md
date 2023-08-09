@@ -1,6 +1,6 @@
 # Remote Control
 
-Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location as if they were local. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion. All from a remote source.
+Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion. All from a remote source. It is a light-weight alternative to heavier solutions that use Chromium browsers on the server.
 
 ### What can I do?
 
@@ -15,13 +15,23 @@ Many things that you can do using JavaScript on a website can be done remotely w
 - Take screenshots of websites (planned)
 - Capture errors and exceptions (planned)
 
+### Use cases
+
+Sometimes using VMs to connect to your website is overkill. Here are some use cases you can setup Remote Control to do:
+
+- Provide support to customers
+- Check for performance issues, CPU usage, network lag, etc.
+- Capture errors
+- Insert DOM onto the page without having to add it to a web application (especially, if its temporary)
+- Listen to events and send them back to a server.
+
 ### What Remote Control is not
 
-Remote Control is not a e2e or unit testing framework. Instead, it can be used in conjunction with testing libraries to automate testing of your website, such as Vitest or Jest.
+Remote Control is not a e2e or unit testing framework. Instead, it can be used in conjunction with testing libraries to automate testing of your website, such as [Vitest](https://vitest.dev/) or [Jest](https://jestjs.io/).
 
-Remote Control is not a web scraping framework. Instead, it can be used in conjunction with web scraping libraries to scrape content from websites, such as Cheerio or Puppeteer.
+Remote Control is not a web scraping framework. Instead, it can be used in conjunction with web scraping libraries to scrape content from websites, such as [Cheerio](https://github.com/cheeriojs/cheerio) or [Puppeteer](https://pptr.dev/).
 
-Remote Control is not a browser automation framework. Instead, it can be used in conjunction with browser automation libraries to automate browsers, such as Playwright or Puppeteer.
+Remote Control is not a browser automation framework. Instead, it can be used in conjunction with browser automation libraries to automate browsers, such as [Playwright](https://playwright.dev/) or [Puppeteer](https://pptr.dev/).
 
 ### How does it work?
 
@@ -128,9 +138,10 @@ npm run dev
 ## Roadmap
 
 - Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
+- Intercept errors and reporting them (Think [LogRocket](https://logrocket.com/))
 - Example using WebSocket
 - Example using WebRTC
-- Example using Custom Channel
+- Example using Custom Channel - Connecting to a server
 
 ## Alternatives to Remote Control
 
@@ -146,14 +157,11 @@ Remote Control may meet the needs of what you are trying to accomplish. However,
 
 [Hyperscript](https://hyperscript.org/) enhances HTML with concise DOM, event and async features. Make writing interactive HTML a joy. It is possible that Remote Control could be used in conjunction with Hyperscript to create a powerful framework for building interactive websites.
 
-
 ### Worker Libraries
 
 #### Partytown
 
 [Partytown](https://partytown.builder.io/) is a lazy-loaded library to help relocate resource intensive scripts into a web worker, and off of the main thread. Its goal is to help speed up sites by dedicating the main thread to your code, and offloading third-party scripts to a web worker.
-
-
 
 ### Testing Frameworks
 
