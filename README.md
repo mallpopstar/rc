@@ -110,7 +110,7 @@ sender.connect(channel)
 const documentSender = createDocumentSender(sender)
 
 documentSender.subscribe('form', 'submit', req => {
-  console.log('form submitted:', res)
+  console.log('form submitted:', req)
 }, { preventDefault: true })
 ```
 
@@ -137,11 +137,11 @@ npm run dev
 
 ## Roadmap
 
-- Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
-- Intercept errors and reporting them (Think [LogRocket](https://logrocket.com/))
-- Example using WebSocket
-- Example using WebRTC
-- Example using Custom Channel - Connecting to a server
+- [ ] Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
+- [ ] Intercept errors and reporting them (Think [LogRocket](https://logrocket.com/))
+- [X] Example using WebSocket (see [examples/websocket](examples/websocket))
+- [ ] Example using WebRTC
+- [ ] Example using Custom Channel 
 
 ## Alternatives to Remote Control
 

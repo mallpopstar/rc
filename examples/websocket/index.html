@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Example</title>
+    <script src="https://unpkg.com/@mallpopstar/partyline@latest/dist/partyline.min.js"></script>
+    <script src="https://unpkg.com/@mallpopstar/rc@latest/dist/rc.min.js"></script>
+  </head>
+  <body>
+    <form>
+      <input type="text" name="name" />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      const { createReceiver, createSender } = partyline
+      const { createDocumentReceiver, createDocumentSender } = remotecontrol
+      const subscribers = new Map()
+
+      const receiver = createReceiver()
+      receiver.connect(window)
+      createDocumentReceiver(receiver).start()
+
+      const sender = createSender()
+      sender.connect(window)
+      const documentSender = createDocumentSender(sender)
+
+      // Connect to web socket
+      const socket = new WebSocket('ws://localhost:8000')
+
+      socket.addEventListener('open', () => {
+        console.log('Connected to server')
+      })
+
+      socket.addEventListener('message', evt => {
+        const { type, selector, event } = JSON.parse(evt.data)
+        if (type === 'subscribe') {
+          const unsub = documentSender.subscribe(
+            selector,
+            event,
+            req => {
+              socket.send(JSON.stringify(req))
+            },
+            { preventDefault: true }
+          )
+          subscribers.set(`${selector}:${event}`, unsub)
+        } else if (type === 'unsubscribe') {
+          console.log('Unsubscribing', selector, event)
+          const unsub = subscribers.get(`${selector}:${event}`)
+          if(unsub) unsub()
+        } else {
+          console.log('Unknown message type', type)
+        }
+      })
+    </script>
+  </body>
+</html>
