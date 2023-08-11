@@ -54,19 +54,21 @@ npm install @mallpopstar/rc
 
 ### CDN
 
-You can use Remote Control without installing it by using a CDN. You can use either [unpkg](https://unpkg.com/) or [jsDelivr](https://www.jsdelivr.com/). If you use a CDN, you can access the library via the `Partyline` global variable.
+You can use Remote Control without installing it by using a CDN. You can use either [unpkg](https://unpkg.com/) or [jsDelivr](https://www.jsdelivr.com/).
 
 You will also need to include the Partyline library. You can use the same CDN for Partyline. Refer to the [Partyline documentation](https://github.com/mallpopstar/partyline)
 
 **Using unpkg**
 
 ```html
+<script src="https://unpkg.com/@mallpopstar/partyline@latest/dist/partyline.min.js"></script>
 <script src="https://unpkg.com/@mallpopstar/rc@latest/dist/rc.min.js"></script>
 ```
 
 **Using jsDelivr**
 
 ```html
+<script src="https://cdn.jsdelivr.net/npm/@mallpopstar/partyline@latest/dist/partyline.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mallpopstar/rc@latest/dist/rc.min.js"></script>
 ```
 
