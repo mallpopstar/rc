@@ -6,6 +6,8 @@ import { createCookieStoreReceiver } from './storage/cookie-store/receiver'
 import { createCookieStoreSender } from './storage/cookie-store/sender'
 import { createDocumentReceiver } from './document/receiver'
 import { createDocumentSender } from './document/sender'
+import { createErrorReceiver } from './error/receiver'
+import { createErrorSender } from './error/sender'
 import { createFetchReceiver } from './network/fetch/receiver'
 import { createFetchSender } from './network/fetch/sender'
 import { createLocalStorageReceiver } from './storage/local-storage/receiver'
@@ -53,6 +55,7 @@ async function main() {
   runDocument()
   runPage()
   runDocumentChange()
+  runError()
   // runWorker()
 }
 
@@ -216,6 +219,21 @@ function runPage() {
   pageSender.subscribe('url', val => {
     console.log('url changed:', val)
   })
+}
+
+function runError() {
+  createErrorReceiver(receiver).start()
+
+  const errorSender = createErrorSender(sender)
+  const unsub = errorSender.subscribe((req: any) => {
+    console.log('error captured:', req)
+    console.log('error stack:', req.body.stack)
+    unsub()
+  })
+
+  setTimeout(() => {
+    throw new Error('this is an error')
+  }, 1000)
 }
 
 main()

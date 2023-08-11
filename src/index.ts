@@ -9,6 +9,9 @@ export { createFetchSender } from './network/fetch/sender'
 // page
 export { createPageReceiver } from './page/receiver'
 export { createPageSender } from './page/sender'
+// error
+export { createErrorReceiver } from './error/receiver'
+export { createErrorSender } from './error/sender'
 // storage
 export { createCookieReceiver } from './storage/cookie/receiver'
 export { createCookieSender } from './storage/cookie/sender'

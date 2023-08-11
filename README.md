@@ -138,7 +138,7 @@ npm run dev
 ## Roadmap
 
 - [ ] Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
-- [ ] Intercept errors and reporting them (Think [LogRocket](https://logrocket.com/))
+- [X] Intercept errors and reporting them (think [LogRocket](https://logrocket.com/))
 - [X] Example using WebSocket (see [examples/websocket](examples/websocket))
 - [ ] Example using WebRTC
 - [ ] Example using Custom Channel 
