@@ -1,6 +1,6 @@
 # Remote Control
 
-Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion. All from a remote source. It is a light-weight alternative to heavier solutions that use Chromium browsers on the server.
+Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It's a light-weight alternative to heavier solutions libraries that use Chromium on the server. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion from the server or admin panel.
 
 ### What can I do?
 
@@ -12,8 +12,7 @@ Many things that you can do using JavaScript on a website can be done remotely w
 - Intercept and modify network requests
 - Read and write to the DOM
 - Event listening on DOM elements
-- Take screenshots of websites (planned)
-- Capture errors and exceptions (planned)
+- Capture errors and exceptions
 
 ### Use cases
 
@@ -32,6 +31,8 @@ Remote Control is not a e2e or unit testing framework. Instead, it can be used i
 Remote Control is not a web scraping framework. Instead, it can be used in conjunction with web scraping libraries to scrape content from websites, such as [Cheerio](https://github.com/cheeriojs/cheerio) or [Puppeteer](https://pptr.dev/).
 
 Remote Control is not a browser automation framework. Instead, it can be used in conjunction with browser automation libraries to automate browsers, such as [Playwright](https://playwright.dev/) or [Puppeteer](https://pptr.dev/).
+
+Remote Control does not provide security out of the box. It is only the communications layer. You will be responsible for implementing security measures to prevent malicious actors from sending requests to all users.
 
 ### How does it work?
 
@@ -135,10 +136,30 @@ npm install
 npm run dev
 ```
 
+## Q&A
+
+### How can I connect to users on my website?
+
+Remote Control provides the hooks for you to do this but you are responsible for implementing the communication channel using (ex, BroadcastChannel, WebSocket, WebRTC, HTTP polling, etc).
+
+> ⚠️ **Warning:** You will be responsible for implementing security measures to prevent malicious actors from sending requests to all users.
+
+**BroadcastChannel**
+
+Broadcast doesn't require a server. If you are using BroadcastChannel, you can use the [BroadcastChannel API](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel) to send messages to all users, where the channel name is the same for all users.
+
+**WebSocket**
+
+If you are using WebSocket, you can use the [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) to send messages to all users, where the WebSocket URL is the same for all users.
+
+**WebRTC**
+
+WebRT is a peer-to-peer protocol. If you are using WebRTC, you will need to implement a signaling server to connect users. You can use the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to send messages to all users.
+
 ## Roadmap
 
 - [ ] Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
-- [ ] Intercept errors and reporting them (Think [LogRocket](https://logrocket.com/))
+- [X] Intercept errors and reporting them (think [LogRocket](https://logrocket.com/))
 - [X] Example using WebSocket (see [examples/websocket](examples/websocket))
 - [ ] Example using WebRTC
 - [ ] Example using Custom Channel 
