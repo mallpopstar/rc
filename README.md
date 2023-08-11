@@ -1,6 +1,6 @@
 # Remote Control
 
-Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It's a light-weight alternative to heavier solutions libraries that use Chromium on the server. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion from the server or admin panel.
+Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It's a light-weight alternative to heavier libraries that use Chromium on the server. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion from the server or admin panel.
 
 ### What can I do?
 
