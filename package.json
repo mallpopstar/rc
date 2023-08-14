@@ -31,19 +31,24 @@
     "type": "git",
     "url": "https://github.com/mallpopstar/rc"
   },
-  "main": "./dist/remote.umd.js",
-  "module": "./dist/remote.es.js",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "./dist/rc.umd.js",
+  "module": "./dist/rc.es.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./dist/remote.es.js",
-      "require": "./dist/remote.umd.js"
+      "import": "./dist/rc.es.js",
+      "require": "./dist/rc.umd.js"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build"
+    "build": "tsc && vite build",
+    "pack": "npm pack --dry-run"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",

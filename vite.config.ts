@@ -12,17 +12,14 @@ export default defineConfig({
     },
     minify: true,
   },
-  plugins: [
-    dts({
-      insertTypesEntry: true,
-    }),
-  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
     },
   },
-  define: {
-    __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
-  },
+  plugins: [
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
 })
