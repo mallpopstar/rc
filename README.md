@@ -1,6 +1,16 @@
 # Remote Control
 
-Remote Control is a JavaScript library that allows you to perform actions on a website from a remote location. It's a light-weight alternative to heavier libraries that use Chromium on the server. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion from the server or admin panel.
+Remote Control is a JavaScript library that allows you to perform actions on your website from a remote location. It's a light-weight alternative to heavier libraries that use Chromium on the server. It can be used to automate repetitive tasks, query and modify DOM, or interact with a website in an automated fashion from the server or admin panel.
+
+<a href="https://www.npmjs.com/package/@mallpopstar/rc">
+  <img src="https://img.shields.io/npm/v/@mallpopstar/rc?style=for-the-badge" alt="npm version" />
+</a>
+<a href="https://img.shields.io/github/license/mallpopstar/rc?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/mallpopstar/rc?style=for-the-badge" alt="license" />
+</a>
+<a href="https://bundlephobia.com/result?p=@mallpopstar/rc">
+  <img src="https://img.shields.io/bundlephobia/minzip/@mallpopstar/rc?style=for-the-badge" alt="bundle size" />
+</a>
 
 ### What can I do?
 
@@ -40,7 +50,7 @@ Remote Control is a collection of modules that perform actions on your website. 
 
 Remote Control is built on top of [Partyline ☎️](https://github.com/mallpopstar/partyline) to communicate with your website. It uses protocols that are already built into your browser, so there is no need to run a browser in a virtual machine.
 
-Unlike the alternatives below, Remote Control does not use a VM or Chromium browser. It requires having the `receiver` exist on the website you want to control. This is a security feature to prevent malicious actors from controlling your website. If you want to control a website that you do not own, you can use a browser extension to inject the receiver into the website.
+Unlike the alternatives below, Remote Control does not use a VM or Chromium browser. It requires having the `receiver` exist on the website you want to control. This is a security feature to prevent malicious actors from controlling your website. If you need to connect to a website that you do not own, you will need to use a different tool.
 
 ## Getting Started
 
@@ -83,6 +93,7 @@ const { createDocumentReceiver, createDocumentSender } = remotecontrol
 ### Usage
 
 Each module in Remote Control consists of two parts:
+
 - A receiver that runs on your website. It listens for commands from the remote control and executes them.
 - A sender that can run from various locations: server, another website, or your local machine. It send requests to the receiver.
 
@@ -112,22 +123,27 @@ const sender = createSender()
 sender.connect(channel)
 const documentSender = createDocumentSender(sender)
 
-documentSender.subscribe('form', 'submit', req => {
-  console.log('form submitted:', req)
-}, { preventDefault: true })
+documentSender.subscribe(
+  'form',
+  'submit',
+  req => {
+    console.log('form submitted:', req)
+  },
+  { preventDefault: true }
+)
 ```
 
 #### What is happening?
 
 In this example...
-1. We are listening to a form submission on your website. 
-2. When the form is submitted, the receiver will send a message to the sender. 
-3. The sender will then log the message to the console. The sender will also prevent the default behavior of the form submission. 
+
+1. We are listening to a form submission on your website.
+2. When the form is submitted, the receiver will send a message to the sender.
+3. The sender will then log the message to the console. The sender will also prevent the default behavior of the form submission.
 
 We are using BroadcastChannel to communicate between the receiver and the sender. You can use any communication channel (window, iframe, web worker, MessageChannel, BroadcastChannel, WebSocket, WebRTC, etc). Partyline allows build your own communication channel if you need to.
 
 The BroadcastChannel allows us to perform actions on your website from another browser without the need of communicating with a server. This is useful for automating tasks on your website from your local machine.
-
 
 ## Running the examples in this repo
 
@@ -161,14 +177,23 @@ WebRT is a peer-to-peer protocol. If you are using WebRTC, you will need to impl
 ## Roadmap
 
 - [ ] Better Documentation (right now, use examples in [src/main.ts](src/main.ts))
-- [X] Intercept errors and reporting them (think [LogRocket](https://logrocket.com/))
-- [X] Example using WebSocket (see [examples/websocket](examples/websocket))
+- [x] Intercept errors and reporting them (think [LogRocket](https://logrocket.com/))
+- [x] Example using WebSocket (see [examples/websocket](examples/websocket))
 - [ ] Example using WebRTC
-- [ ] Example using Custom Channel 
+- [ ] Example using Custom Channel
 
 ## Alternatives to Remote Control
 
 Remote Control may meet the needs of what you are trying to accomplish. However, there are many other tools that may be better suited for your use case. Here are some alternatives to Remote Control:
+
+<a href="https://www.scraperapi.com" style="display: flex; justify-content: center; margin-bottom: 16px; text-decoration: none;">
+  <div style="background-color: white; display: inline-flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 12px 12px; gap: 8px; color: 
+  black;">
+    Need an automated way to scrape content without code?
+    <img src="https://www.scraperapi.com/wp-content/uploads/scraperapi-logo.svg" alt="Scraper API Logo" width="200" />
+  </div>
+</a>
 
 ### DOM Frameworks and Libraries
 
