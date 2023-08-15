@@ -16,13 +16,18 @@ Remote Control is a JavaScript library that allows you to perform actions on you
 
 Many things that you can do using JavaScript on a website can be done remotely with Remote Control. Here are a few examples to get you started:
 
-- Interact with a website in an automated fashion
-- Automate testing of your website
-- Automate repetitive tasks
-- Intercept and modify network requests
-- Read and write to the DOM
-- Event listening on DOM elements
-- Capture errors and exceptions
+- Interact with a website in an automated fashion (think [Selenium](https://www.selenium.dev/))
+- Automate testing of your website (think [Cypress](https://www.cypress.io/))
+- Automate repetitive tasks on your website (think [AutoHotKey](https://www.autohotkey.com/))
+- Intercept and modify network requests (think [Puppeteer](https://pptr.dev/))
+- Read and write to the DOM (think [jQuery](https://jquery.com/))
+- Event listening on DOM elements (think [Hyperscript](https://hyperscript.org/))
+- Capture errors and exceptions (think [LogRocket](https://logrocket.com/))
+- If you are really creative, RC can assist you in creating your own AI scraper like: 
+  - [Browse.ai](https://www.browse.ai/)
+  - [Diffbot](https://www.diffbot.com/)
+  - [ScrapeStorm](https://www.scrapestorm.com/)
+  - [ParseHub](https://www.parsehub.com/)
 
 ### Use cases
 
@@ -36,13 +41,13 @@ Sometimes using VMs to connect to your website is overkill. Here are some use ca
 
 ### What Remote Control is not
 
-Remote Control is not a e2e or unit testing framework. Instead, it can be used in conjunction with testing libraries to automate testing of your website, such as [Vitest](https://vitest.dev/) or [Jest](https://jestjs.io/).
+* Remote Control is not a e2e or unit testing framework. Instead, it can be used in conjunction with testing libraries to automate testing of your website, such as [Vitest](https://vitest.dev/) or [Jest](https://jestjs.io/).
 
-Remote Control is not a web scraping framework. Instead, it can be used in conjunction with web scraping libraries to scrape content from websites, such as [Cheerio](https://github.com/cheeriojs/cheerio) or [Puppeteer](https://pptr.dev/).
+* Remote Control is not a web scraping framework. Instead, it can be used in conjunction with web scraping libraries to scrape content from websites, such as [Cheerio](https://github.com/cheeriojs/cheerio) or [Puppeteer](https://pptr.dev/).
 
-Remote Control is not a browser automation framework. Instead, it can be used in conjunction with browser automation libraries to automate browsers, such as [Playwright](https://playwright.dev/) or [Puppeteer](https://pptr.dev/).
+* Remote Control is not a browser automation framework. Instead, it can be used in conjunction with browser automation libraries to automate browsers, such as [Playwright](https://playwright.dev/) or [Puppeteer](https://pptr.dev/).
 
-Remote Control does not provide security out of the box. It is only the communications layer. You will be responsible for implementing security measures to prevent malicious actors from sending requests to all users.
+* Remote Control does not provide security out of the box. It is only the communications layer. You will be responsible for implementing security measures to prevent malicious actors from sending requests to all users.
 
 ### How does it work?
 
@@ -51,6 +56,8 @@ Remote Control is a collection of modules that perform actions on your website. 
 Remote Control is built on top of [Partyline ☎️](https://github.com/mallpopstar/partyline) to communicate with your website. It uses protocols that are already built into your browser, so there is no need to run a browser in a virtual machine.
 
 Unlike the alternatives below, Remote Control does not use a VM or Chromium browser. It requires having the `receiver` exist on the website you want to control. This is a security feature to prevent malicious actors from controlling your website. If you need to connect to a website that you do not own, you will need to use a different tool.
+
+Like its counterparts, you will need to use rotation proxies to prevent your IP from getting banned. You can use a service like [Scraper API](https://www.scraperapi.com/) to do this.
 
 ## Getting Started
 
@@ -186,14 +193,8 @@ WebRT is a peer-to-peer protocol. If you are using WebRTC, you will need to impl
 
 Remote Control may meet the needs of what you are trying to accomplish. However, there are many other tools that may be better suited for your use case. Here are some alternatives to Remote Control:
 
-<a href="https://www.scraperapi.com" style="display: flex; justify-content: center; margin-bottom: 16px; text-decoration: none;">
-  <div style="background-color: white; display: inline-flex; flex-direction: column;
-  align-items: center; justify-content: center; padding: 12px 12px; gap: 8px; color: 
-  black;">
-    Need an automated way to scrape content without code?
-    <img src="https://www.scraperapi.com/wp-content/uploads/scraperapi-logo.svg" alt="Scraper API Logo" width="200" />
-  </div>
-</a>
+### [Try Scraper API](https://www.scraperapi.com)
+Scaper API handles proxies, browsers, and CAPTCHAs, so you can get the HTML from any web page with a simple API call!
 
 ### DOM Frameworks and Libraries
 
